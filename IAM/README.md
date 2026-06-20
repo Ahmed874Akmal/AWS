@@ -60,7 +60,7 @@ It displays information about:
 - Policies
 - Identity Providers
 
-![IAM Dashboard](./images/00-iam-dashboard.png)
+![IAM Dashboard](images/00-iam-dashboard.png)
 
 ---
 
