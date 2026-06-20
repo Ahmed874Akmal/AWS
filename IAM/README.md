@@ -1,273 +1,219 @@
-# 🔐 AWS IAM Lab
+# AWS IAM User and Group Management Lab
 
-## 📖 Overview
+## Overview
 
-This lab introduces AWS Identity and Access Management (IAM) and demonstrates how AWS manages authentication, authorization, and access control through Users, Groups, and Policies.
+This lab demonstrates the implementation of AWS Identity and Access Management (IAM) by creating users, groups, and assigning permissions through IAM policies.
 
-The lab focuses on understanding how permissions are inherited and how IAM can be used to implement the Principle of Least Privilege.
-
----
-
-## 🎯 Objectives
-
-This lab demonstrates:
-
-- 👤 Exploring IAM Users
-- 👥 Exploring IAM Groups
-- 📜 Inspecting IAM Policies
-- 🔗 Assigning Users to Groups
-- 🔒 Managing Permissions
-- 🧪 Testing Access Control
-- ☁️ Understanding AWS IAM Architecture
+The objective of this lab is to follow AWS security best practices by managing access through IAM Groups instead of assigning permissions directly to individual users.
 
 ---
 
-## 🏗️ IAM Architecture
+## Architecture Diagram
 
-The following diagram illustrates the relationship between IAM Users, Groups, and Policies.
+![Architecture](images/architecture.png)
 
-![IAM Architecture](./images/IAM.jpeg)
+The IAM structure implemented in this lab consists of:
 
-### Permission Flow
+- Three IAM Users:
+  - user-1
+  - user-2
+  - user-3
 
-```text
-User
-   ↓
-Group
-   ↓
-Policy
-   ↓
-AWS Resource
-```
+- Three IAM Groups:
+  - EC2-Admin
+  - EC2-Support
+  - S3-Support
 
-Users inherit permissions from the groups they belong to.
+Each group has a specific IAM Policy attached, and users inherit permissions through group membership.
 
 ---
 
-# 📸 Lab Screenshots
+## IAM Dashboard
+
+The IAM Dashboard was used to review and manage IAM resources within the AWS account.
+
+### Screenshot
+
+![IAM Dashboard](images/iam-dashboard.png)
+
+### Observations
+
+- 3 IAM User Groups were created.
+- 4 IAM Users were available in the account.
+- IAM Policies and Roles were visible from the dashboard.
+- The dashboard provides a centralized view of identity management resources.
 
 ---
 
-## 🏠 IAM Dashboard
+## IAM Users Creation
 
-The IAM Dashboard provides an overview of IAM resources available in the AWS account.
+Three IAM users were created to represent different roles within the AWS environment.
 
-It displays information about:
+### Screenshot
 
-- Users
-- Groups
-- Roles
-- Policies
-- Identity Providers
+![IAM Users](images/iam-users.png)
 
-![IAM Dashboard](images/00-iam-dashboard.png)
+### Users
+
+| Username |
+|-----------|
+| user-1 |
+| user-2 |
+| user-3 |
+
+### Purpose
+
+The users were created to demonstrate how permissions can be managed efficiently using IAM Groups.
 
 ---
 
-## 👤 IAM Users
+## IAM Groups Creation
 
-The AWS account contains four IAM users.
+Three IAM Groups were created to organize permissions based on job responsibilities.
 
-Users represent identities that can authenticate and interact with AWS resources.
+### Screenshot
 
-In this lab:
+![IAM Groups](images/iam-groups.png)
 
-- awsstudent
-- user-1
-- user-2
+### Groups
+
+| Group Name | Description |
+|------------|-------------|
+| EC2-Admin | Administrative access to EC2 instances |
+| EC2-Support | Read-only access to EC2 resources |
+| S3-Support | Read-only access to Amazon S3 |
+
+---
+
+## EC2-Admin Group Configuration
+
+### Screenshot
+
+![EC2 Admin](images/ec2-admin.png)
+
+### Assigned User
+
 - user-3
 
-Initially, the lab users do not belong to any groups.
+### Permissions
 
-![IAM Users](./images/01-users.png)
+The EC2-Admin group was configured to allow:
 
----
+- View EC2 resources
+- Start EC2 instances
+- Stop EC2 instances
 
-## 👥 IAM User Groups
+### Result
 
-Three groups were preconfigured to represent different job roles.
-
-- EC2-Admin
-- EC2-Support
-- S3-Support
-
-Groups simplify permission management by assigning permissions to multiple users at once.
-
-![IAM Groups](./images/02-user-groups.png)
+User `user-3` inherits all permissions assigned to the EC2-Admin group.
 
 ---
 
-## 📜 EC2 Support Policy
+## EC2-Support Group Configuration
 
-The EC2-Support group uses the AWS Managed Policy:
+### Screenshot
 
-AmazonEC2ReadOnlyAccess
+![EC2 Support](images/ec2-support.png)
 
-This policy allows users to:
+### Assigned User
 
-✅ View EC2 resources
+- user-2
 
-✅ Monitor EC2 instances
+### Permissions
 
-❌ Start instances
+The EC2-Support group was configured with:
 
-❌ Stop instances
+- EC2 Read-Only Access
 
-❌ Terminate instances
+### Result
 
-This demonstrates Read-Only access.
-
-![EC2 Support Policy](./images/03-ec2-support-policy.png)
+User `user-2` can monitor EC2 resources but cannot make modifications.
 
 ---
 
-## 🪣 S3 Support Policy
+## S3-Support Group Configuration
 
-The S3-Support group uses the AWS Managed Policy:
+### Screenshot
 
-AmazonS3ReadOnlyAccess
+![S3 Support](images/s3-support.png)
 
-This policy allows users to:
+### Assigned User
 
-✅ View S3 buckets
+- user-1
 
-✅ List bucket contents
+### Permissions
 
-❌ Upload objects
+The S3-Support group was configured with:
 
-❌ Delete objects
+- Amazon S3 Read-Only Access
 
-❌ Modify bucket settings
+### Result
 
-This demonstrates secure storage access with limited permissions.
-
-![S3 Support Policy](./images/04-s3-support-policy.png)
+User `user-1` can view S3 buckets and objects without modification privileges.
 
 ---
 
-## ⚡ EC2 Admin Inline Policy
+## User-to-Group Mapping
 
-Unlike the previous groups, EC2-Admin uses a Customer Inline Policy.
-
-Policy:
-
-EC2-Admin-Policy
-
-This policy provides administrative capabilities for EC2 resources.
-
-Users assigned to this group can:
-
-✅ View instances
-
-✅ Start instances
-
-✅ Stop instances
-
-This demonstrates the difference between Managed Policies and Inline Policies.
-
-![EC2 Admin Policy](./images/05-ec2-admin-inline-policy.png)
+| User | Assigned Group | Access Level |
+|--------|----------------|--------------|
+| user-1 | S3-Support | S3 Read-Only |
+| user-2 | EC2-Support | EC2 Read-Only |
+| user-3 | EC2-Admin | EC2 View, Start, and Stop |
 
 ---
 
-## 🔗 User Assignment - S3 Support
+## Security Best Practices Applied
 
-A user was assigned to the S3-Support group.
+This lab follows several AWS security best practices:
 
-Permissions are inherited automatically from the group.
-
-This demonstrates Role-Based Access Control (RBAC).
-
-![S3 Assignment](./images/06-user2-added-to-S3-support.png)
-
----
-
-## 🔗 Final Group Assignment
-
-All users were assigned according to their job responsibilities.
-
-| User | Group |
-|--------|--------|
-| user-1 | S3-Support |
-| user-2 | EC2-Support |
-| user-3 | EC2-Admin |
-
-Permissions are inherited automatically through IAM Groups.
-
-![Final Assignment](./images/07-final-group-assignment.png)
+- Principle of Least Privilege
+- Role-Based Access Control (RBAC)
+- Centralized Permission Management
+- Separation of Responsibilities
+- Group-Based Permission Assignment
 
 ---
 
-## 🔗 User Assignment - EC2 Support
+## Validation Results
 
-The EC2 Support user was successfully added to the EC2-Support group.
-
-This grants the user read-only access to Amazon EC2 resources.
-
-![EC2 Support Assignment](./images/07-user3-added-to-ec2-support.png)
-
----
-
-## 🔗 User Assignment - EC2 Admin
-
-The EC2 Administrator user was successfully assigned to the EC2-Admin group.
-
-The user now inherits the EC2-Admin Inline Policy.
-
-![EC2 Admin Assignment](./images/08-user3-added-to-ec2-admin.png)
+| Task | Status |
+|--------|---------|
+| Create IAM Users | ✅ Completed |
+| Create IAM Groups | ✅ Completed |
+| Assign Users to Groups | ✅ Completed |
+| Configure IAM Policies | ✅ Completed |
+| Verify Permission Inheritance | ✅ Completed |
 
 ---
 
-# 🔐 Security Concepts Learned
+## Learning Outcomes
 
-During this lab the following IAM concepts were explored:
+By completing this lab, the following concepts were practiced:
 
-- 👤 IAM Users
-- 👥 IAM Groups
-- 📜 IAM Policies
-- 🔗 Permission Inheritance
-- 🛡️ Least Privilege Principle
-- 🔒 Access Control
-- ☁️ AWS Security Best Practices
-- 🎭 Role-Based Access Control (RBAC)
-
----
-
-# 📊 Policy Types Comparison
-
-| Policy Type | Example |
-|------------|----------|
-| AWS Managed Policy | AmazonEC2ReadOnlyAccess |
-| AWS Managed Policy | AmazonS3ReadOnlyAccess |
-| Customer Inline Policy | EC2-Admin-Policy |
+- AWS IAM Fundamentals
+- IAM Users Management
+- IAM Groups Management
+- IAM Policies
+- Access Control
+- Permission Inheritance
+- AWS Security Best Practices
 
 ---
 
-# 🚀 Learning Outcome
+## Technologies Used
 
-After completing this lab, I was able to:
-
-✅ Explore IAM Users and Groups
-
-✅ Understand AWS Managed Policies
-
-✅ Understand Inline Policies
-
-✅ Assign Users to Groups
-
-✅ Implement Permission Inheritance
-
-✅ Apply Role-Based Access Control
-
-✅ Manage AWS Permissions Securely
+- Amazon Web Services (AWS)
+- AWS Identity and Access Management (IAM)
 
 ---
 
-# 👨‍💻 Author
+## Author
 
-**Abdelrahman Mohamed**
+Abdelrahman Mohamed
 
 Faculty of Computers and Information Systems
 
 Artificial Intelligence Department
 
-AWS Academy Cloud Architecting
+Egyptian Chinese University (ECU)
