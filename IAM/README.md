@@ -186,6 +186,110 @@ This lab follows several AWS security best practices:
 | Verify Permission Inheritance | ✅ Completed |
 
 ---
+---
+
+# Permission Verification
+
+After assigning users to their respective IAM groups and attaching policies, access permissions were tested to verify that the configured policies were working correctly.
+
+---
+
+## S3-Support Access Verification
+
+### Screenshot
+
+![S3 Access Verification](images/s3-access-verification.png)
+
+### Test Performed
+
+User `user-1` logged in and accessed Amazon S3.
+
+### Result
+
+- Successfully viewed available S3 buckets.
+- Successfully accessed bucket information.
+- No administrative privileges were granted.
+
+### Verification
+
+This confirms that the S3 Read-Only policy was correctly applied through the `S3-Support` group.
+
+---
+
+## EC2-Support Access Verification
+
+### Screenshot
+
+![EC2 Support Verification](images/ec2-support-verification.png)
+
+### Test Performed
+
+User `user-2` attempted to stop an EC2 instance.
+
+### Result
+
+AWS returned an authorization error indicating that the user was not permitted to perform the `ec2:StopInstances` action.
+
+### Verification
+
+This confirms that the EC2-Support group has Read-Only permissions and cannot perform administrative actions on EC2 resources.
+
+### Security Validation
+
+The permission boundary successfully prevented unauthorized modifications to EC2 instances.
+
+---
+
+## EC2-Admin Access Verification
+
+### Screenshot
+
+![EC2 Admin Verification](images/ec2-admin-verification.png)
+
+### Test Performed
+
+User `user-3` attempted to stop the EC2 instance.
+
+### Result
+
+The stop operation was successfully initiated and AWS accepted the request.
+
+### Verification
+
+This confirms that the EC2-Admin group has sufficient permissions to perform administrative EC2 operations including:
+
+- Viewing instances
+- Starting instances
+- Stopping instances
+
+### Security Validation
+
+Permissions assigned through the EC2-Admin group were successfully inherited by the assigned user.
+
+---
+
+## Access Control Summary
+
+| User | Group | Expected Permission | Verification Result |
+|--------|--------|--------------------|--------------------|
+| user-1 | S3-Support | S3 Read-Only | ✅ Passed |
+| user-2 | EC2-Support | EC2 Read-Only | ✅ Passed |
+| user-3 | EC2-Admin | EC2 Start/Stop Access | ✅ Passed |
+
+---
+
+## Conclusion
+
+The IAM implementation was successfully validated through real-world permission testing.
+
+The results demonstrate that:
+
+- Permissions were inherited correctly through IAM Groups.
+- Users received only the permissions assigned to their groups.
+- Unauthorized actions were blocked.
+- Administrative actions were allowed only for authorized users.
+
+This confirms successful implementation of the Principle of Least Privilege and proper IAM access control within the AWS environment.
 
 ## Learning Outcomes
 
