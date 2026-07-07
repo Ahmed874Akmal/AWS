@@ -1,4 +1,4 @@
-# ☁️ AWS Academy Lab - Amazon Elastic File System (EFS)
+# ☁️  Amazon Elastic File System (EFS)
 
 ## 📖 Overview
 
@@ -27,7 +27,7 @@ This lab demonstrates how to create and configure an Amazon Elastic File System 
 
 ---
 
-# 📝 Lab Steps
+# 📝 Steps
 
 ## Step 1 — Create Security Group
 
