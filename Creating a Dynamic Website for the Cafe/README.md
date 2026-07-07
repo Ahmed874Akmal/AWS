@@ -1,4 +1,4 @@
-# ☕ AWS Academy Lab - Deploying the Café Web Application
+#  Deploying the Café Web Application
 
 ## 📖 Overview
 
@@ -33,11 +33,11 @@ In this lab, a complete Café web application was deployed on an Amazon EC2 inst
 
 ---
 
-# 📝 Lab Steps
+# 📝  Steps
 
 ## Step 1 — Launch EC2 Instance
 
-A Lab IDE EC2 instance was launched successfully.
+A  IDE EC2 instance was launched successfully.
 
 Instance Details:
 
@@ -208,7 +208,7 @@ This confirmed that the application could be replicated quickly using the create
 
 # ✅ Results
 
-The lab successfully demonstrated:
+The successfully demonstrated:
 
 - EC2 Deployment
 - HTTP Configuration
