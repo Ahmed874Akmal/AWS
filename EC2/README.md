@@ -1,4 +1,4 @@
-# AWS Academy Lab - Monitor an EC2 Instance
+#  Monitor an EC2 Instance
 
 ## Task 1 – Configure Security Group
 
@@ -78,7 +78,7 @@ AWS prevented the operation because Stop Protection was enabled.
 
 ## Conclusion
 
-This lab demonstrated:
+This  demonstrated:
 
 - EC2 instance management
 - Security Group configuration
