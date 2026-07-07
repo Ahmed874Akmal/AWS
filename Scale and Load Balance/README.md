@@ -1,4 +1,4 @@
-# 🚀 AWS Academy Lab - Auto Scaling, Load Balancer & CloudWatch
+# 🚀  Auto Scaling, Load Balancer & CloudWatch
 
 ## 📖 Overview
 
@@ -17,7 +17,7 @@ This lab demonstrates how to build a highly available and scalable web applicati
 
 ---
 
-# 📝 Lab Implementation
+# 📝  Implementation
 
 ## Step 1 — Create Launch Template
 
