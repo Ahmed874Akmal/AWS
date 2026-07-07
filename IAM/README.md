@@ -1,4 +1,4 @@
-# AWS IAM User and Group Management Lab
+# AWS IAM User and Group Management
 
 ## Overview
 
@@ -12,7 +12,7 @@ The objective of this lab is to follow AWS security best practices by managing a
 
 ![Architecture](images/architecture.png)
 
-The IAM structure implemented in this lab consists of:
+The IAM structure implemented in this is consists of:
 
 - Three IAM Users:
   - user-1
