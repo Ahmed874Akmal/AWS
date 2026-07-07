@@ -1,4 +1,4 @@
-# 🔐 AWS Academy Lab - IAM Users, Groups and Permissions
+# 🔐  - IAM Users, Groups and Permissions
 
 ## 📖 Overview
 
@@ -27,7 +27,7 @@ This lab demonstrates Identity and Access Management (IAM) in AWS by creating us
 
 ---
 
-# 📝 Lab Steps
+# 📝  Steps
 
 ## Step 1 — Create IAM Groups
 
