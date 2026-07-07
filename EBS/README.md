@@ -1,8 +1,8 @@
-# AWS Academy Lab – Amazon EBS Volume Management
+#  Amazon EBS Volume Management
 
 ## Overview
 
-This lab demonstrates how to manage Amazon Elastic Block Store (EBS) volumes with Amazon EC2.
+This demonstrates how to manage Amazon Elastic Block Store (EBS) volumes with Amazon EC2.
 
 The tasks include:
 
