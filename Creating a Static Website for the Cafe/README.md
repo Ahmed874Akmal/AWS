@@ -1,8 +1,8 @@
-# ☁️ AWS Academy Lab - Amazon S3 Storage Management
+# ☁️  - Amazon S3 Storage Management
 
 ## 📖 Overview
 
-This lab demonstrates how to configure and manage an Amazon S3 bucket, including static website hosting, bucket policies, object versioning, lifecycle management, and cross-region replication.
+This  demonstrates how to configure and manage an Amazon S3 bucket, including static website hosting, bucket policies, object versioning, lifecycle management, and cross-region replication.
 
 ---
 
@@ -31,7 +31,7 @@ This lab demonstrates how to configure and manage an Amazon S3 bucket, including
 
 ---
 
-# 📝 Lab Steps
+# 📝 Steps
 
 ## Step 1 — Create an Amazon S3 Bucket
 
